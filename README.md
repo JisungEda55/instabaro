@@ -1,1 +1,1 @@
-https://jisungeda55.github.io/instabaro/?videoId=쿼리
+https://jisungeda55.github.io/instabaro/?videoId=
