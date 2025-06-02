@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <script>
+    (function() {
+      // URL에서 videoId 파라미터 추출
+      const params = new URLSearchParams(window.location.search);
+      const videoId = params.get("videoId") || "vHBodN0Mirs";  // 기본값 설정
+
+      // 플랫폼 감지
+      const isAndroid = /android/i.test(navigator.userAgent);
+      const isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+
+      // 딥링크 생성
+      const appScheme = isAndroid ? 
+        `vnd.youtube://${videoId}` : 
+        `youtube://watch?v=${videoId}`;
+
+      // 웹 폴백 URL
+      const webUrl = `https://www.youtube.com/watch?v=${videoId}`;
+
+      // 앱 실행 시도
+      if (isAndroid || isiOS) {
+        window.location.href = appScheme;
+
+        // 앱 미설치 시 웹으로 폴백 (1초 후 실행)
+        setTimeout(() => {
+          if (!document.webkitHidden && !document.hidden) {
+            window.location.href = webUrl;
+          }
+        }, 1000);
+      } else {
+        window.location.href = webUrl; // PC/기타 디바이스
+      }
+    })();
+  </script>
+</head>
+<body>
+</body>
+</html>
