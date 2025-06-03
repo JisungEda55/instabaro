@@ -4,34 +4,44 @@
   <meta charset="UTF-8">
   <script>
     (function() {
-      // URL에서 videoId 파라미터 추출
       const params = new URLSearchParams(window.location.search);
-      const videoId = params.get("videoId") || "vHBodN0Mirs";  // 기본값 설정
+      const fullUrl = params.get("videoId");
+      
+      // 기본값
+      let videoId = "vHBodN0Mirs";
 
-      // 플랫폼 감지
+      if (fullUrl) {
+        try {
+          // YouTube URL에서 ID 추출
+          const urlObj = new URL(fullUrl);
+          if (urlObj.hostname.includes("youtu.be")) {
+            videoId = urlObj.pathname.slice(1); // /Y9VvBbGiIEs → Y9VvBbGiIEs
+          } else if (urlObj.hostname.includes("youtube.com")) {
+            videoId = urlObj.searchParams.get("v") || videoId;
+          }
+        } catch (e) {
+          // 비정상적인 URL이면 무시하고 기본값 사용
+        }
+      }
+
       const isAndroid = /android/i.test(navigator.userAgent);
       const isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
 
-      // 딥링크 생성
       const appScheme = isAndroid ? 
         `vnd.youtube://${videoId}` : 
         `youtube://watch?v=${videoId}`;
 
-      // 웹 폴백 URL
       const webUrl = `https://www.youtube.com/watch?v=${videoId}`;
 
-      // 앱 실행 시도
       if (isAndroid || isiOS) {
         window.location.href = appScheme;
-
-        // 앱 미설치 시 웹으로 폴백 (1초 후 실행)
         setTimeout(() => {
           if (!document.webkitHidden && !document.hidden) {
             window.location.href = webUrl;
           }
         }, 1000);
       } else {
-        window.location.href = webUrl; // PC/기타 디바이스
+        window.location.href = webUrl;
       }
     })();
   </script>
