@@ -1,39 +1,152 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Fullscreen-like Web Page</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>투명성 공개 | 스트리머 진심 페이지</title>
   <style>
-    html, body {
+    body {
       margin: 0;
-      padding: 0;
-      height: 100%;
-      overflow: hidden;
-      background-color: #111;
-      color: white;
-      font-family: sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f7f9fb;
+      color: #333;
+      line-height: 1.6;
     }
-    #content {
+    header {
+      background: linear-gradient(135deg, #00c6ff, #0072ff);
+      color: white;
+      padding: 2rem 1rem;
       text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+    section {
+      max-width: 900px;
+      margin: 2rem auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease;
+    }
+    section:hover {
+      transform: translateY(-5px);
+    }
+    h2 {
+      color: #0072ff;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 0.5rem;
+    }
+    ul {
+      padding-left: 1.5rem;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      color: #777;
+      font-size: 0.9rem;
+    }
+    .update-log {
+      font-size: 0.9rem;
+      color: #555;
+    }
+    .feedback-form input,
+    .feedback-form textarea {
+      width: 100%;
+      padding: 0.6rem;
+      margin: 0.5rem 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .feedback-form button {
+      background: #0072ff;
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .feedback-form button:hover {
+      background: #0059c1;
     }
   </style>
 </head>
 <body>
-  <div id="content">
-    <h1>전체화면처럼 보이는 페이지</h1>
-    <p>브라우저 UI 최소화</p>
-  </div>
-  <script>
-    // 주소창 숨기기 (일부 브라우저에만 적용됨)
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        window.scrollTo(0, 1);
-      }, 0);
-    });
-  </script>
+
+  <header>
+    <h1>🎥 스트리머의 투명성 공개 페이지</h1>
+    <p>진심으로 다가가기 위한 공개 공간입니다</p>
+  </header>
+
+  <section>
+    <h2>💰 수익 및 후원 투명성</h2>
+    <ul>
+      <li>총 후원: 3,210,000원 (2025년 6월 기준)</li>
+      <li>광고 수익: 유튜브 월 평균 약 40만원</li>
+      <li>수익 사용: 60% 장비, 20% 콘텐츠 투자, 10% 기부, 10% 비상자금</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>🤝 스폰서 및 협업 공개</h2>
+    <ul>
+      <li>현재 스폰서: GameCorp (6월~8월, 로고 삽입형)</li>
+      <li>협찬 제품은 반드시 "협찬" 표기</li>
+      <li>계약 조건: 영상 내 직접 광고 없음, 배너만 표시</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>🎬 콘텐츠 운영 원칙</h2>
+    <ul>
+      <li>모든 광고 콘텐츠는 별도 표기</li>
+      <li>후원 여부에 따라 콘텐츠 내용이 변하지 않음</li>
+      <li>시청자 중심 콘텐츠 기조 유지</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>🔐 개인정보 보호 방침</h2>
+    <ul>
+      <li>후원자 정보는 제3자에게 절대 제공하지 않음</li>
+      <li>기부/후원은 익명 기반으로 진행</li>
+      <li>채팅/참여 기록은 방송 이후 자동 삭제 처리</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>📋 커뮤니티 운영 기준</h2>
+    <ul>
+      <li>욕설, 혐오, 공격성 댓글은 경고 없이 차단</li>
+      <li>정책 위반 시 모더레이터가 즉시 제재</li>
+      <li>트리거 경고는 사전에 방송 내 표기</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>📨 피드백 및 제안</h2>
+    <form class="feedback-form" onsubmit="event.preventDefault(); alert('의견이 등록되었습니다. 감사합니다!'); this.reset();">
+      <input type="text" placeholder="닉네임 (선택)" />
+      <textarea placeholder="의견이나 제안을 입력해주세요" required></textarea>
+      <button type="submit">의견 보내기</button>
+    </form>
+  </section>
+
+  <section class="update-log">
+    <h2>🕒 업데이트 로그</h2>
+    <ul>
+      <li>2025-06-03: 최초 공개</li>
+      <li>2025-06-10: 수익 내역 갱신 예정</li>
+    </ul>
+  </section>
+
+  <footer>
+    © 2025 스트리머명. 모든 권리 보유. | 진심은 꾸밈 없이 보여집니다.
+  </footer>
+
 </body>
 </html>
