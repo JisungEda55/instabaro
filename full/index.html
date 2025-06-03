@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Fullscreen-like Web Page</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      background-color: #111;
+      color: white;
+      font-family: sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #content {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="content">
+    <h1>전체화면처럼 보이는 페이지</h1>
+    <p>브라우저 UI 최소화</p>
+  </div>
+  <script>
+    // 주소창 숨기기 (일부 브라우저에만 적용됨)
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        window.scrollTo(0, 1);
+      }, 0);
+    });
+  </script>
+</body>
+</html>
